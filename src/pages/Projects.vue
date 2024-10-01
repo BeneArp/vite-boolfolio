@@ -1,8 +1,14 @@
 <script>
   import {store} from '../store/store';
   // import {getData} from '../store/store';
+  import Loader from '../components/partials/Loader.vue'
 
   export default{
+
+    name: 'Projects',
+    components:{
+      Loader
+    },
 
     data(){
 
@@ -10,6 +16,7 @@
         projects:[],
         technologies:[],
         types:[],
+        loading:true,
       }
 
     },
@@ -23,6 +30,7 @@
           .then(res => {  
             this.projects = res.data;
             console.log(this.projects);
+            this.loading = false;
         })
           .catch(err => {
             console.log(err);
@@ -69,41 +77,51 @@
 
 <template>
 
-  <h1>Progetti</h1>
+  <section v-if="this.loading">
 
-  <div class="wrapper">
+    <div class="loading" v-if="loading">
+        <Loader></Loader>
+    </div>
 
-    <!-- elenco progetti -->
-    <div>
+  </section>
 
-      <h3>Lista progetti</h3>
+  <section v-else>
 
-      <ul>
-        <li v-for="project in projects"> <strong>Id:</strong> {{ project.id }} | <strong>Titolo:</strong> {{ project.title }} | <strong>Data d'inizio:</strong> {{  project.start_date  }} | <strong>Data fine:</strong> {{ project.end_date }}</li>
-      </ul>
+    <h1>Progetti</h1>
+
+    <div class="wrapper">
+      <!-- elenco progetti -->
+      <div>
+
+        <h3>Lista progetti</h3>
+
+        <ul>
+          <li v-for="project in projects"> <strong>Id:</strong> {{ project.id }} | <strong>Titolo:</strong> {{ project.title }} | <strong>Data d'inizio:</strong> {{  project.start_date  }} | <strong>Data fine:</strong> {{ project.end_date }}</li>
+        </ul>
+
+      </div>
+
+      <!-- elenco tecnologie e categorie -->
+      <div>
+
+        <h3>Tecnologie</h3>
+
+        <ul>
+          <li v-for="technology in technologies"><strong>Nome:</strong> {{ technology.name }} </li>
+        </ul>
+
+
+        <h3>Tipologie</h3>
+
+        <ul>
+          <li v-for="type in types"> <strong>Nome:</strong> {{ type.name }} </li>
+        </ul>
+
+      </div>
 
     </div>
 
-    <!-- elenco tecnologie e categorie -->
-    <div>
-
-      <h3>Tecnologie</h3>
-
-      <ul>
-        <li v-for="technology in technologies"><strong>Nome:</strong> {{ technology.name }} </li>
-      </ul>
-
-
-      <h3>Tipologie</h3>
-
-      <ul>
-        <li v-for="type in types"> <strong>Nome:</strong> {{ type.name }} </li>
-      </ul>
-
-    </div>
-
-  </div>
-
+  </section>
 
 
 </template>
