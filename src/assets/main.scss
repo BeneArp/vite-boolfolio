@@ -1,9 +1,6 @@
-@import './base.css';
-
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
 }
 
@@ -26,10 +23,24 @@ a,
     display: flex;
     place-items: center;
   }
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+nav{
+  display: block;
+  width: 100%;
+
+  ul{
+    padding: 0;
+    display: flex;
+    gap: 1em;
+    list-style: none;
+
+    li{
+      
+    }
   }
+}
+
+h1{
+  text-align: center;
 }
