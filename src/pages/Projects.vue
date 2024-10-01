@@ -1,5 +1,28 @@
 <script>
+  import {store} from '../store/store';
 
+  export default{
+
+    data(){
+
+      return{
+        projects:[],
+      }
+
+    },
+
+    methods:{
+      getApi(){
+        console.log('sto funzionando');
+        
+      }
+    },
+
+    mounted(){
+
+      this.getApi();
+    }
+  }
 </script>
 
 <template>
