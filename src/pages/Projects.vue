@@ -44,7 +44,9 @@
 
   <div>
 
- 
+    <ul>
+      <li v-for="project in projects"> <strong>Id:</strong> {{ project.id }} | <strong>Titolo:</strong> {{ project.title }} | <strong>Data d'inizio:</strong> {{  project.start_date  }} | <strong>Data fine:</strong> {{ project.end_date }}</li>
+    </ul>
 
   </div>
 
