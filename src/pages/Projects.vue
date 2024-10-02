@@ -113,7 +113,7 @@
 
            <!-- data fine -->
            <strong>Data fine:</strong> {{ project.end_date }}
-           
+
           </li>
         </ul>
 
@@ -153,23 +153,6 @@
 
       h3{
       margin-top: 2em;
-    }
-
-    .lable{
-      background-color: hsla(160, 100%, 37%, 1);
-      color: black;
-      padding: 0.2em 0.8em;
-      border-radius: 0.6em;
-      width: fit-content;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.5s;
-      font-weight: bold;
-
-      &:hover{
-        background-color: rgb(3, 122, 83);
-        color: white;
-      }
     }
 
     li{
