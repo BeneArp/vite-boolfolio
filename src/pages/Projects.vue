@@ -3,6 +3,8 @@
   // import {getData} from '../store/store';
   import Loader from '../components/partials/Loader.vue'
 
+  import { RouterLink } from 'vue-router';
+
   export default{
 
     name: 'Projects',
@@ -30,7 +32,6 @@
           .then(res => {  
             this.projects = res.data;
             console.log(this.projects);
-            this.loading = false;
         })
           .catch(err => {
             console.log(err);
@@ -57,6 +58,7 @@
           .then(res => {
             this.types = res.data;
             console.log( this.types);
+            this.loading = false;
           })
           .catch(err => {
             console.log(err);
@@ -96,7 +98,23 @@
         <h3>Lista progetti</h3>
 
         <ul>
-          <li v-for="project in projects"> <strong>Id:</strong> {{ project.id }} | <strong>Titolo:</strong> {{ project.title }} | <strong>Data d'inizio:</strong> {{  project.start_date  }} | <strong>Data fine:</strong> {{ project.end_date }}</li>
+          <li v-for="project in projects">
+            
+            <!-- id -->
+            <strong>Id:</strong> {{ project.id }} |
+
+            <!-- titlo -->
+            <strong>Titolo:</strong>
+            <!-- link dettagli progetto -->
+            <router-link class="project-title" :to="{name:'project-details', params:{slug: project.slug}}"> {{ project.title }} </router-link> |
+
+            <!-- data inizio -->
+           <strong>Data d'inizio:</strong> {{  project.start_date  }} |
+
+           <!-- data fine -->
+           <strong>Data fine:</strong> {{ project.end_date }}
+           
+          </li>
         </ul>
 
       </div>
@@ -107,14 +125,14 @@
         <h3>Tecnologie</h3>
 
         <ul>
-          <li v-for="technology in technologies"><strong>Nome:</strong> {{ technology.name }} </li>
+          <li class="lable" v-for="technology in technologies">{{ technology.name }} </li>
         </ul>
 
 
         <h3>Tipologie</h3>
 
         <ul>
-          <li v-for="type in types"> <strong>Nome:</strong> {{ type.name }} </li>
+          <li class="lable" v-for="type in types">{{ type.name }} </li>
         </ul>
 
       </div>
@@ -132,10 +150,39 @@
     display: flex;
     justify-content: space-between;
     gap: 5em;
+
+      h3{
+      margin-top: 2em;
+    }
+
+    .lable{
+      background-color: hsla(160, 100%, 37%, 1);
+      color: black;
+      padding: 0.2em 0.8em;
+      border-radius: 0.6em;
+      width: fit-content;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.5s;
+      font-weight: bold;
+
+      &:hover{
+        background-color: rgb(3, 122, 83);
+        color: white;
+      }
+    }
+
+    li{
+      cursor: default;
+      // margin-bottom: 1.2em;
+
+      .project-title{
+        font-weight: bold;
+        color: whitesmoke;
+      }
+    }
+
   }
 
-  h3{
-    margin-top: 2em;
-  }
 
 </style>

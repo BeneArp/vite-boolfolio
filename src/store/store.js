@@ -4,7 +4,7 @@ export const store = reactive({
 
     apiUrl: 'http://127.0.0.1:8000/api/',
 
-    getData : reactive({
+    getData :({
         getRequest:(url) =>{
             return new Promise((resolve, reject) => {
     
